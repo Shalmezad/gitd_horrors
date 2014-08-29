@@ -1,14 +1,7 @@
 package;
 
-import flixel.FlxG;
-import flixel.FlxSprite;
 import flixel.FlxState;
-import flixel.text.FlxText;
-import flixel.ui.FlxButton;
 
-/**
- * A FlxState which can be used for the actual gameplay.
- */
 class PlayState extends FlxState
 {
 	/**
@@ -17,6 +10,7 @@ class PlayState extends FlxState
 	override public function create():Void
 	{
 		super.create();
+    add(new Player());
 	}
 	
 	/**
