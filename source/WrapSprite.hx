@@ -7,21 +7,21 @@ class WrapSprite extends FlxSprite
 
   private function wrapAround():Void
   {
-    if(this.x < 0)
+    if(this.x + this.width < 0)
     {
-      this.x += Main.gameWidth;
+      this.x += Main.gameWidth + this.width;
     } 
-    if(this.y < 0)
+    if(this.y + this.height < 0)
     {
-      this.y += Main.gameHeight;
+      this.y += Main.gameHeight + this.height;
     }
     if(this.x > Main.gameWidth)
     {
-      this.x -= Main.gameWidth;
+      this.x -= Main.gameWidth + this.width;
     }
     if(this.y > Main.gameHeight)
     {
-      this.y -= Main.gameHeight;
+      this.y -= Main.gameHeight + this.height;
     }
   }
 }
