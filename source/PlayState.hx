@@ -11,6 +11,7 @@ class PlayState extends FlxState
 	{
 		super.create();
     add(new Player());
+    add(new Cannon());
 	}
 	
 	/**

@@ -1,5 +1,5 @@
 TARGET=neko
-FLAGS="-D MATH_RANDOM_INTRANGED=1"
+#FLAGS="-D MATH_RANDOM_INTRANGED=1"
 build:
 	lime build neko $(FLAGS)
 clean:

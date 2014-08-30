@@ -3,9 +3,10 @@ package ;
 import flixel.FlxSprite;
 import flixel.FlxG;
 
-class Player extends FlxSprite
+class Player extends WrapSprite 
 {
-  var MOVE_ACCEL:Float = 2; 
+  var MOVE_ACCEL:Float = 6; 
+  var TURN_SPEED:Float = 3;
   public function new()
   {
     super();
@@ -16,6 +17,8 @@ class Player extends FlxSprite
 
     this.drag.x = 80;
     this.drag.y = 80;
+    this.maxVelocity.x = 200;
+    this.maxVelocity.y = 200;
   }
 
   override public function update():Void
@@ -25,11 +28,11 @@ class Player extends FlxSprite
     this.acceleration.y = 0;
     if(FlxG.keys.pressed.RIGHT || FlxG.keys.pressed.D)
     {
-      this.angle += 1;
+      this.angle += TURN_SPEED;
     }
     else if(FlxG.keys.pressed.LEFT || FlxG.keys.pressed.A)
     {
-      this.angle -= 1;
+      this.angle -= TURN_SPEED;
     }
     if(FlxG.keys.pressed.UP || FlxG.keys.pressed.W)
     {
@@ -47,24 +50,5 @@ class Player extends FlxSprite
     wrapAround();
   }
 
-  private function wrapAround():Void
-  {
-    if(this.x < 0)
-    {
-      this.x += Main.gameWidth;
-    } 
-    if(this.y < 0)
-    {
-      this.y += Main.gameHeight;
-    }
-    if(this.x > Main.gameWidth)
-    {
-      this.x -= Main.gameWidth;
-    }
-    if(this.y > Main.gameHeight)
-    {
-      this.y -= Main.gameHeight;
-    }
-  }
 
 }
