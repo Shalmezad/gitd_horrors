@@ -4,6 +4,7 @@ import flixel.FlxState;
 import flixel.FlxG;
 import flixel.group.FlxGroup;
 import flixel.text.FlxText;
+import flixel.util.FlxSpriteUtil;
 
 class PlayState extends FlxState
 {
@@ -21,8 +22,11 @@ class PlayState extends FlxState
   private var spikes:FlxTypedGroup<Spike>;
 
   private var coinText:FlxText;
+  private var healthText:FlxText;
 
   private var coinCount:Int = 0;
+
+  private var healthCount:Int = 3;
 
 	override public function create():Void
 	{
@@ -33,6 +37,8 @@ class PlayState extends FlxState
     player = new Player();
     coins = new FlxTypedGroup<Coin>();
     spikes = new FlxTypedGroup<Spike>();
+
+    healthText = new FlxText(20,10, 200, "Health: 0");
     coinText = new FlxText(20,20, 200, "Coins: 0");
 
     add(coins);
@@ -40,6 +46,7 @@ class PlayState extends FlxState
     add(moneyCannon);
     add(painCannon);
     add(player);
+    add(healthText);
     add(coinText);
 	}
 	
@@ -59,7 +66,9 @@ class PlayState extends FlxState
 	{
 		super.update();
     FlxG.overlap(coins, player, coinPlayerOverlap);
+    FlxG.overlap(spikes, player, spikePlayerOverlap);
     coinText.text = "Coins: " + coinCount;
+    healthText.text = "Health: " + healthCount;
     //coin firing
     coinFireCooldown --;
     if(coinFireCooldown <= 0)
@@ -96,6 +105,17 @@ class PlayState extends FlxState
     {
       coin.kill();
       coinCount++;
+    }
+  }
+
+  private function spikePlayerOverlap(spike:Dynamic, player:Dynamic):Void
+  {
+    if(spike.alive && !FlxSpriteUtil.isFlickering(player))
+    {
+      FlxSpriteUtil.flicker(player, 1);
+      healthCount--;
+      spike.kill();
+      coinCount= Std.int(coinCount/2);
     }
   }
 
