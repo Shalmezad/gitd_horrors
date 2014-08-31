@@ -5,6 +5,7 @@ import flixel.FlxG;
 import flixel.group.FlxGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxSpriteUtil;
+import shalmezad.flxplus.FlxShadowText;
 
 class PlayState extends FlxState
 {
@@ -21,8 +22,8 @@ class PlayState extends FlxState
   private var coins:FlxTypedGroup<Coin>;
   private var spikes:FlxTypedGroup<Spike>;
 
-  private var coinText:FlxText;
-  private var healthText:FlxText;
+  private var coinText:FlxShadowText;
+  private var healthText:FlxShadowText;
 
   private var coinCount:Int = 0;
 
@@ -38,8 +39,8 @@ class PlayState extends FlxState
     coins = new FlxTypedGroup<Coin>();
     spikes = new FlxTypedGroup<Spike>();
 
-    healthText = new FlxText(20,10, 200, "Health: 0");
-    coinText = new FlxText(20,20, 200, "Coins: 0");
+    healthText = new FlxShadowText(20,10, 200, "Health: 0");
+    coinText = new FlxShadowText(20,20, 200, "Coins: 0");
 
     add(new Cloud(0,0,1,1));
     add(new Cloud(0,0,2,2, "assets/images/cloud2.png"));
