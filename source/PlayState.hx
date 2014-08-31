@@ -7,18 +7,18 @@ import flixel.text.FlxText;
 
 class PlayState extends FlxState
 {
-	/**
-	 * Function that is called up when to state is created to set it up. 
-	 */
-  private var FIRE_RATE:Int = 30;
+  private var COIN_FIRE_RATE:Int = 30;
+  private var SPIKE_FIRE_RATE:Int = 45;
 
   private var player:Player;
   private var moneyCannon:Cannon;
   private var painCannon:Cannon;
 
-  private var fireCooldown:Int = 30;
+  private var coinFireCooldown:Int = 30;
+  private var spikeFireCooldown:Int = 30;
 
   private var coins:FlxTypedGroup<Coin>;
+  private var spikes:FlxTypedGroup<Spike>;
 
   private var coinText:FlxText;
 
@@ -32,9 +32,11 @@ class PlayState extends FlxState
     painCannon = new Cannon("assets/images/pain_cannon.png", -1.1);
     player = new Player();
     coins = new FlxTypedGroup<Coin>();
+    spikes = new FlxTypedGroup<Spike>();
     coinText = new FlxText(20,20, 200, "Coins: 0");
 
     add(coins);
+    add(spikes);
     add(moneyCannon);
     add(painCannon);
     add(player);
@@ -58,19 +60,34 @@ class PlayState extends FlxState
 		super.update();
     FlxG.overlap(coins, player, coinPlayerOverlap);
     coinText.text = "Coins: " + coinCount;
-    fireCooldown --;
-    if(fireCooldown <= 0)
+    //coin firing
+    coinFireCooldown --;
+    if(coinFireCooldown <= 0)
     {
-      fire();
+      fireCoin();
+    }
+    //spike firing
+    spikeFireCooldown--;
+    if(spikeFireCooldown <= 0)
+    {
+      fireSpike();
     }
 	}	
 
 
-  private function fire():Void
+  private function fireCoin():Void
   {
     var coin:Coin = coins.recycle(Coin);
     coin.resetCoin(moneyCannon.x, moneyCannon.y, moneyCannon.angle);
-    fireCooldown = FIRE_RATE;
+    coinFireCooldown = COIN_FIRE_RATE;
+  }
+
+
+  private function fireSpike():Void
+  {
+    var spike:Spike= spikes.recycle(Spike);
+    spike.resetCoin(painCannon.x, painCannon.y, painCannon.angle);
+    spikeFireCooldown = SPIKE_FIRE_RATE;
   }
 
   private function coinPlayerOverlap(coin:Dynamic, player:Dynamic):Void
