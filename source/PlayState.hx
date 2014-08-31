@@ -41,6 +41,8 @@ class PlayState extends FlxState
     healthText = new FlxText(20,10, 200, "Health: 0");
     coinText = new FlxText(20,20, 200, "Coins: 0");
 
+    add(new Cloud(0,0,1,1));
+    add(new Cloud(0,0,2,2, "assets/images/cloud2.png"));
     add(coins);
     add(spikes);
     add(moneyCannon);
