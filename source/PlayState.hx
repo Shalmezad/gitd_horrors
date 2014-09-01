@@ -120,6 +120,10 @@ class PlayState extends FlxState
       healthCount--;
       spike.kill();
       coinCount= Std.int(coinCount/2);
+      if(healthCount <= 0)
+      {
+        FlxG.switchState(new GameOverState(coinCount));
+      }
     }
   }
 
