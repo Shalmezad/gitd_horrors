@@ -104,10 +104,11 @@ class PlayState extends FlxState
 
   private function coinPlayerOverlap(coin:Dynamic, player:Dynamic):Void
   {
+    var c:Coin = coin;
     if(coin.alive)
     {
       coin.kill();
-      coinCount++;
+      coinCount+= c.value;
     }
   }
 
