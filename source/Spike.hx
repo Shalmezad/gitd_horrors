@@ -5,7 +5,7 @@ import flixel.FlxG;
 
 class Spike extends FlxSprite
 {
-  var VELOCITY:Float = 50;
+  var VELOCITY:Float = 30;
   private function new(x:Float, y:Float, angle:Float)
   {
     super();

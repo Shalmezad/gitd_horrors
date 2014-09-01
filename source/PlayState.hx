@@ -10,7 +10,7 @@ import shalmezad.flxplus.FlxShadowText;
 class PlayState extends FlxState
 {
   private var COIN_FIRE_RATE:Int = 30;
-  private var SPIKE_FIRE_RATE:Int = 45;
+  private var SPIKE_FIRE_RATE:Int = 60;
 
   private var player:Player;
   private var moneyCannon:Cannon;

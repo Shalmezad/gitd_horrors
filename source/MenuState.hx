@@ -24,8 +24,9 @@ class MenuState extends FlxState
     add(new Cloud(0,0,1,1));
     add(new Cloud(0,0,2,2, "assets/images/cloud2.png"));
     add(new FlxShadowText(40,40,200, "Earl the horror", 40)); 
+    add(new FlxShadowText(240,220, 60, "Shalmezad"));
 
-    goText = new FlxShadowText(80,200, 200, "Press SPACE", 20);
+    goText = new FlxShadowText(80,180, 200, "Press SPACE", 20);
     add(goText);
 
 	}

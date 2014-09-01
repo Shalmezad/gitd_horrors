@@ -15,10 +15,10 @@ class Player extends WrapSprite
     this.animation.add("move", [0,1], 5, true);
     this.animation.play("still");
 
-    this.drag.x = 80;
-    this.drag.y = 80;
-    this.maxVelocity.x = 200;
-    this.maxVelocity.y = 200;
+    this.drag.x = 160;
+    this.drag.y = 160;
+    this.maxVelocity.x = 160;
+    this.maxVelocity.y = 160;
   }
 
   override public function update():Void
