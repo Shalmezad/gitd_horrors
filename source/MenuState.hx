@@ -3,8 +3,8 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
-import flixel.text.FlxText;
 import flixel.ui.FlxButton;
+import shalmezad.flxplus.FlxShadowText;
 
 /**
  * A FlxState which can be used for the game's menu.
@@ -17,6 +17,11 @@ class MenuState extends FlxState
 	override public function create():Void
 	{
 		super.create();
+    bgColor = 0x00DDDD;
+    add(new Cloud(0,0,1,1));
+    add(new Cloud(0,0,2,2, "assets/images/cloud2.png"));
+    add(new FlxShadowText(40,40,200, "Earl the horror", 40)); 
+    add(new FlxShadowText(80,200, 200, "Press SPACE", 20));
 	}
 	
 	/**
@@ -34,5 +39,9 @@ class MenuState extends FlxState
 	override public function update():Void
 	{
 		super.update();
+    if(FlxG.keys.pressed.SPACE)
+    {
+      FlxG.switchState(new PlayState());
+    }
 	}	
 }

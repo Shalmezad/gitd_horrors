@@ -12,13 +12,13 @@ class FlxShadowText extends FlxGroupXY
   public var width(get,null):Float;
   public var height(get,null):Float;
 
-  public function new(x:Int = 0, y:Int = 0, width:Int = 100, text:String = "")
+  public function new(x:Int = 0, y:Int = 0, width:Int = 100, text:String = "", size:Float = 8)
   {
     super();
     this.x = x;
     this.y = y;
-    txt2 = new FlxText(x+1,y+1,width,text);
-    txt1 = new FlxText(x,y,width,text);
+    txt2 = new FlxText(x+1,y+1,width,text, size);
+    txt1 = new FlxText(x,y,width,text, size);
     txt2.color = 0xFF000000;
     txt1.color = 0xFFFFFFFF;
     add(txt2);
