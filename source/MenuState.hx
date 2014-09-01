@@ -14,6 +14,9 @@ class MenuState extends FlxState
 	/**
 	 * Function that is called up when to state is created to set it up. 
 	 */
+  var goText:FlxShadowText;
+  var tick:Int = 0;
+  var FLASH_TICK:Int = 40;
 	override public function create():Void
 	{
 		super.create();
@@ -21,7 +24,10 @@ class MenuState extends FlxState
     add(new Cloud(0,0,1,1));
     add(new Cloud(0,0,2,2, "assets/images/cloud2.png"));
     add(new FlxShadowText(40,40,200, "Earl the horror", 40)); 
-    add(new FlxShadowText(80,200, 200, "Press SPACE", 20));
+
+    goText = new FlxShadowText(80,200, 200, "Press SPACE", 20);
+    add(goText);
+
 	}
 	
 	/**
@@ -39,6 +45,16 @@ class MenuState extends FlxState
 	override public function update():Void
 	{
 		super.update();
+    tick++;
+    if(tick > FLASH_TICK)
+    {
+      goText.visible = false;
+    }
+    if(tick > FLASH_TICK * 2)
+    {
+      goText.visible = true;
+      tick = 0;
+    }
     if(FlxG.keys.pressed.SPACE)
     {
       FlxG.switchState(new PlayState());
